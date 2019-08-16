@@ -58,6 +58,7 @@ INSERT INTO Client(ClientID,Surname,GivenName,Gender) VALUES(102661522,'Henry','
 INSERT INTO dbo.[Event](TourName,EventMonth,EventDay,EventYear,Fee) VALUES('Montain','Jan',23,2019,2000),('River','Aug',29,2020,3200),('Hill','May',12,2025,1600);
 INSERT INTO Booking(ClientID,TourName,EventMonth,EventDay,EventYear,Payment,DateBooked) VALUES(102661522,'River','Aug',29,2020,1600,'January 1,2020'),(101828493,'Montain','Jan',23,2019,1500,'June 4,2018'),(189472974,'Hill','May',12,2025,1200,'August 2,2017');
 
+ 
 SELECT C.GivenName,C.Surname,B.TourName,T.[Description],B.EventYear,B.EventMonth,B.EventDay,B.DateBooked,E.Fee
 FROM Booking B
 INNER JOIN dbo.[Event] E
@@ -75,3 +76,13 @@ SELECT Payment
 FROM Booking
 WHERE Payment >(Select AVG(Payment)
                         FROM Booking)
+
+CREATE VIEW TASK5 AS
+SELECT C.GivenName,C.Surname,B.TourName,T.[Description],B.EventYear,B.EventMonth,B.EventDay,B.DateBooked,E.Fee
+FROM Booking B
+INNER JOIN dbo.[Event] E
+ON B.EventDay = E.EventDay
+INNER JOIN Client C 
+ON C.ClientID = B.ClientID
+INNER JOIN Tour T 
+ON T.TourName = B.TourName
