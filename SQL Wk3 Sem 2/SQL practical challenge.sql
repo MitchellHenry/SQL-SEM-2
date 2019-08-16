@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS Booking;
 DROP TABLE IF EXISTS dbo.[Event]
 DROP TABLE IF EXISTS Tour;
 DROP TABLE IF EXISTS Client;
+DROP VIEW IF EXISTS TASK5;
 
 
 CREATE TABLE Tour(
@@ -86,3 +87,13 @@ INNER JOIN Client C
 ON C.ClientID = B.ClientID
 INNER JOIN Tour T 
 ON T.TourName = B.TourName
+
+SELECT COUNT(*)
+FROM Booking;
+--THis Query Returns the same number of columns so it appears my first query is correctSELE
+SELECT COUNT(DateBooked)
+FROM Booking;
+--This Query Shows the number of bookings made in total for any event on any day and gives the same amount as query 2
+SELECT AVG(Payment)
+FROM Booking;
+--This shows the values outputed in the third query above are all above the payment average
